@@ -7,7 +7,7 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 
 Bundler.require
-require "canonical-rails"
+require "zhulei-canonical-rails"
 
 module Dummy
   class Application < Rails::Application

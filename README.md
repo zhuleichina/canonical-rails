@@ -1,4 +1,4 @@
-CanonicalRails
+ZhuleiCanonicalRails
 ==============
 [![Build Status](https://travis-ci.org/jumph4x/canonical-rails.svg?branch=master)](https://travis-ci.org/jumph4x/canonical-rails)
 

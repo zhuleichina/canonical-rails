@@ -1,4 +1,4 @@
-module CanonicalRails
+module ZhuleiCanonicalRails
   class InstallGenerator < Rails::Generators::Base
 
     def self.source_paths
@@ -10,7 +10,7 @@ module CanonicalRails
     end
 
     def add_files
-      template 'canonical_rails.rb', 'config/initializers/canonical_rails.rb'
+      template 'zhulei_canonical_rails.rb', 'config/initializers/zhulei_canonical_rails.rb'
     end
 
   end

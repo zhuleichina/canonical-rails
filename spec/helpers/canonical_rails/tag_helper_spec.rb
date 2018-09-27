@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe CanonicalRails::TagHelper, type: :helper do
+describe ZhuleiCanonicalRails::TagHelper, type: :helper do
   before(:each) do
     controller.request.host = 'www.alternative-domain.com'
     controller.request.path = '/our_resources'
   end
 
   after(:each) do
-    CanonicalRails.class_variable_set(:@@sym_collection_actions, nil)
-    CanonicalRails.class_variable_set(:@@sym_whitelisted_parameters, nil)
+    ZhuleiCanonicalRails.class_variable_set(:@@sym_collection_actions, nil)
+    ZhuleiCanonicalRails.class_variable_set(:@@sym_whitelisted_parameters, nil)
   end
 
   # Default behavior
@@ -86,8 +86,8 @@ describe CanonicalRails::TagHelper, type: :helper do
   # Customized behavior
   describe 'w/ custom config' do
     before(:each) do
-      CanonicalRails.host = 'www.mywebstore.com'
-      CanonicalRails.port = nil
+      ZhuleiCanonicalRails.host = 'www.mywebstore.com'
+      ZhuleiCanonicalRails.port = nil
     end
 
     describe 'on both types of actions' do
@@ -96,14 +96,14 @@ describe CanonicalRails::TagHelper, type: :helper do
       end
 
       it 'should take the port from the config' do
-        CanonicalRails.port = 3000
+        ZhuleiCanonicalRails.port = 3000
         expect(helper.canonical_port).to eq 3000
       end
     end
 
     describe 'with host and port' do
       before(:each) do
-        CanonicalRails.port = 3000
+        ZhuleiCanonicalRails.port = 3000
         controller.request.path_parameters = { controller: 'our_resources', action: 'show' }
       end
 
@@ -122,13 +122,13 @@ describe CanonicalRails::TagHelper, type: :helper do
 
     describe 'with a specified protocol' do
       before(:each) do
-        CanonicalRails.protocol = 'https://'
+        ZhuleiCanonicalRails.protocol = 'https://'
         controller.request.path_parameters = { controller: 'our_resources', action: 'show' }
         allow(controller.request).to receive(:port) { 443 }
       end
 
       after(:each) do
-        CanonicalRails.protocol = nil
+        ZhuleiCanonicalRails.protocol = nil
       end
 
       describe '#canonical_href' do
@@ -157,7 +157,7 @@ describe CanonicalRails::TagHelper, type: :helper do
       end
 
       before(:each) do
-        CanonicalRails.whitelisted_parameters = ['page', 'keywords', 'search']
+        ZhuleiCanonicalRails.whitelisted_parameters = ['page', 'keywords', 'search']
         allow_any_instance_of(controller.class).to receive(:params).and_return(params)
         controller.request.path_parameters = { controller: 'our_resources', action: 'index' }
       end
@@ -246,7 +246,7 @@ describe CanonicalRails::TagHelper, type: :helper do
 
   describe 'when opengraph url tag is turned on' do
     before(:each) do
-      CanonicalRails.opengraph_url = true
+      ZhuleiCanonicalRails.opengraph_url = true
       controller.request.path_parameters = { controller: 'our_resources', action: 'show' }
     end
 

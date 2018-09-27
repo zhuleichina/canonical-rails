@@ -1,8 +1,8 @@
-require "canonical-rails/engine"
+require "zhulei-canonical-rails/engine"
 
-module CanonicalRails
+module ZhuleiCanonicalRails
 
-  # Default way to setup CanonicalRails. Run `rails g canonical_rails:install` to create
+  # Default way to setup ZhuleiCanonicalRails. Run `rails g canonical_rails:install` to create
   # a fresh initializer with all configuration values.
   #
   # the config\setup concept politely observed at and borrowed from Devise: https://github.com/plataformatec/devise/blob/master/lib/devise.rb

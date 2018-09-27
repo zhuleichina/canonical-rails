@@ -1,7 +1,7 @@
-module CanonicalRails
+module ZhuleiCanonicalRails
   module TagHelper
     def trailing_slash_needed?
-      request.params.key?('action') && CanonicalRails.sym_collection_actions.include?(request.params['action'].to_sym)
+      request.params.key?('action') && ZhuleiCanonicalRails.sym_collection_actions.include?(request.params['action'].to_sym)
     end
 
     def trailing_slash_if_needed
@@ -13,15 +13,15 @@ module CanonicalRails
     end
 
     def canonical_protocol
-      CanonicalRails.protocol || request.protocol
+      ZhuleiCanonicalRails.protocol || request.protocol
     end
 
     def canonical_host
-      CanonicalRails.host || request.host
+      ZhuleiCanonicalRails.host || request.host
     end
 
     def canonical_port
-      (CanonicalRails.port || request.port).to_i
+      (ZhuleiCanonicalRails.port || request.port).to_i
     end
 
     def canonical_href(host = canonical_host, port = canonical_port)
@@ -37,7 +37,7 @@ module CanonicalRails
     def canonical_tag(host = canonical_host, port = canonical_port)
       canonical_url = canonical_href(host, port)
       capture do
-        if CanonicalRails.opengraph_url
+        if ZhuleiCanonicalRails.opengraph_url
           concat tag(:meta, property: 'og:url', content: canonical_url)
         end
         concat tag(:link, href: canonical_url, rel: :canonical)
@@ -46,7 +46,7 @@ module CanonicalRails
 
     def whitelisted_params
       selected_params = params.select do |key, value|
-        value.present? && CanonicalRails.sym_whitelisted_parameters.include?(key.to_sym)
+        value.present? && ZhuleiCanonicalRails.sym_whitelisted_parameters.include?(key.to_sym)
       end
 
       selected_params.respond_to?(:to_unsafe_h) ? selected_params.to_unsafe_h : selected_params.to_h
